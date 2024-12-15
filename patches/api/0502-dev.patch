@@ -1,0 +1,38 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: dank1234 <139914667+dank1234@users.noreply.github.com>
+Date: Sun, 15 Dec 2024 00:01:11 +0000
+Subject: [PATCH] dev
+
+
+diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+index 5df19bd701c67506689fc7f49d91f99ebfbc83f0..489a6ff6c50129a445b283fd8183352dce8e86a8 100644
+--- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
++++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
+@@ -36,14 +36,14 @@ public class SimpleCommandMap implements CommandMap {
+     }
+ 
+     private void setDefaultCommands() {
+-        register("bukkit", new VersionCommand("version"));
+-        register("bukkit", new ReloadCommand("reload"));
++        //register("bukkit", new VersionCommand("version"));
++        //register("bukkit", new ReloadCommand("reload"));
+         //register("bukkit", new PluginsCommand("plugins")); // Paper
+-        register("bukkit", new co.aikar.timings.TimingsCommand("timings")); // Paper
++        //register("bukkit", new co.aikar.timings.TimingsCommand("timings")); // Paper
+     }
+ 
+     public void setFallbackCommands() {
+-        register("bukkit", new HelpCommand());
++        //register("bukkit", new HelpCommand());
+     }
+ 
+     /**
+@@ -53,7 +53,7 @@ public class SimpleCommandMap implements CommandMap {
+     public void registerAll(@NotNull String fallbackPrefix, @NotNull List<Command> commands) {
+         if (commands != null) {
+             for (Command c : commands) {
+-                register(fallbackPrefix, c);
++                // register(fallbackPrefix, c); // RuneMC
+             }
+         }
+     }

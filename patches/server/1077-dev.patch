@@ -1,0 +1,101 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: dank1234 <139914667+dank1234@users.noreply.github.com>
+Date: Sun, 15 Dec 2024 00:01:10 +0000
+Subject: [PATCH] dev
+
+
+diff --git a/src/main/java/io/papermc/paper/SparksFly.java b/src/main/java/io/papermc/paper/SparksFly.java
+index 62e2d5704c348955bc8284dc2d54c933b7bcdd06..59d4ffe87c0edda5404dfdc1670d4622929ab0f0 100644
+--- a/src/main/java/io/papermc/paper/SparksFly.java
++++ b/src/main/java/io/papermc/paper/SparksFly.java
+@@ -151,7 +151,7 @@ public final class SparksFly {
+     }
+ 
+     private void registerCommand(final Server server) {
+-        server.getCommandMap().register(COMMAND_NAME, "paper", new CommandImpl(COMMAND_NAME, this.spark.getPermissions()));
++        // server.getCommandMap().register(COMMAND_NAME, "paper", new CommandImpl(COMMAND_NAME, this.spark.getPermissions()));
+     }
+ 
+     public void tickStart() {
+diff --git a/src/main/java/io/papermc/paper/command/PaperCommands.java b/src/main/java/io/papermc/paper/command/PaperCommands.java
+index 7b58b2d6297800c2dcdbf7539e5ab8e7703f39f1..a4294b583ab03df4b055bdaaa074cef883e17330 100644
+--- a/src/main/java/io/papermc/paper/command/PaperCommands.java
++++ b/src/main/java/io/papermc/paper/command/PaperCommands.java
+@@ -16,15 +16,17 @@ public final class PaperCommands {
+ 
+     private static final Map<String, Command> COMMANDS = new HashMap<>();
+     static {
+-        COMMANDS.put("paper", new PaperCommand("paper"));
+-        COMMANDS.put("callback", new CallbackCommand("callback"));
+-        COMMANDS.put("mspt", new MSPTCommand("mspt"));
++        // COMMANDS.put("paper", new PaperCommand("paper"));
++        // COMMANDS.put("callback", new CallbackCommand("callback"));
++        // COMMANDS.put("mspt", new MSPTCommand("mspt"));
+     }
+ 
+     public static void registerCommands(final MinecraftServer server) {
++        /*
+         COMMANDS.forEach((s, command) -> {
+             server.server.getCommandMap().register(s, "Paper", command);
+         });
+         server.server.getCommandMap().register("bukkit", new PaperPluginsCommand());
++         */// RuneMC
+     }
+ }
+diff --git a/src/main/java/net/minecraft/commands/Commands.java b/src/main/java/net/minecraft/commands/Commands.java
+index 517cb238ec280aadd1fc54bcb675ed386e798eaf..efe9059ff9898b0f2cab1574e2bc35aa114fc622 100644
+--- a/src/main/java/net/minecraft/commands/Commands.java
++++ b/src/main/java/net/minecraft/commands/Commands.java
+@@ -160,6 +160,7 @@ public class Commands {
+ 
+     public Commands(Commands.CommandSelection environment, CommandBuildContext commandRegistryAccess) {
+         // Paper
++        /*
+         AdvancementCommands.register(this.dispatcher);
+         AttributeCommand.register(this.dispatcher, commandRegistryAccess);
+         ExecuteCommand.register(this.dispatcher, commandRegistryAccess);
+@@ -260,6 +261,7 @@ public class Commands {
+         if (environment.includeIntegrated) {
+             PublishCommand.register(this.dispatcher);
+         }
++         */
+ 
+         // Paper start - Vanilla command permission fixes
+         for (final CommandNode<CommandSourceStack> node : this.dispatcher.getRoot().getChildren()) {
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index ae4ebf509837e8d44255781c61d02873f8b74be8..e85441c626c55e2700e8692b5324788885b3f4f0 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -2012,7 +2012,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+ 
+     @DontObfuscate
+     public String getServerModName() {
+-        return io.papermc.paper.ServerBuildInfo.buildInfo().brandName(); // Paper
++        return "RuneCodex [Paper]";
+     }
+ 
+     public SystemReport fillSystemReport(SystemReport details) {
+diff --git a/src/main/resources/configurations/commands.yml b/src/main/resources/configurations/commands.yml
+index 18f54571200e2eca09a39b88f170fe7b99d8618f..b32a2d9ecdb0649e06c3294c4c5d2cc031aec3ea 100644
+--- a/src/main/resources/configurations/commands.yml
++++ b/src/main/resources/configurations/commands.yml
+@@ -12,5 +12,4 @@
+ command-block-overrides: []
+ ignore-vanilla-permissions: false
+ aliases:
+-    icanhasbukkit:
+-      - "version $1-"
++
+diff --git a/src/test/java/io/papermc/paper/command/brigadier/BukkitCommandConversionTest.java b/src/test/java/io/papermc/paper/command/brigadier/BukkitCommandConversionTest.java
+index 4b419ce023f61d5af9ff7a34e6879de1991cf4df..97a3991d318edb059e2427d7b0f418ea132accb4 100644
+--- a/src/test/java/io/papermc/paper/command/brigadier/BukkitCommandConversionTest.java
++++ b/src/test/java/io/papermc/paper/command/brigadier/BukkitCommandConversionTest.java
+@@ -44,7 +44,7 @@ public class BukkitCommandConversionTest {
+         Assertions.assertEquals(commandMapSize, dispatcher.getRoot().getChildren().size());
+ 
+         // Register a new command
+-        commandMap.register("test", exampleCommand);
++        // commandMap.register("test", exampleCommand);
+         Assertions.assertEquals(commandMapSize + (3 * 2), stringCommandMap.values().size()); // Make sure commands are accounted for, including those with namespaced keys
+ 
+         // Test Registration
